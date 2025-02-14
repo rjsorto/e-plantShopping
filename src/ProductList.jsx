@@ -256,11 +256,12 @@ function ProductList() {
 	};
 
 	const [addedToCart, setAddedToCart] = useState([]);
+	const [cartQty, setCartQty] = useState(0);
 
-	const handleAddToCart = (plant) => {
-		// console.log(plant);
+	const handleAddToCart = (e, plant) => {
 		dispatch(addItem(plant));
 		setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true }));
+		setCartQty(cartQty + 1);
 	};
 
 	return (
@@ -283,14 +284,15 @@ function ProductList() {
 					<div>
 						{' '}
 						<a href='#' onClick={(e) => handleCartClick(e)} style={styleA}>
-							<h1 className='cart'>
+							<h2 className='cart'>
+								<div className='cart_quantity_count'>{cartQty}</div>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' id='IconChangeColor' height='68' width='68'>
 									<rect width='156' height='156' fill='none'></rect>
 									<circle cx='80' cy='216' r='12'></circle>
 									<circle cx='184' cy='216' r='12'></circle>
 									<path d='M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8' fill='none' stroke='#faf9f9' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' id='mainIconPathAttribute'></path>
 								</svg>
-							</h1>
+							</h2>
 						</a>
 					</div>
 				</div>
@@ -305,7 +307,7 @@ function ProductList() {
 									<div className='product-card' key={i}>
 										<img src={plant.image} alt={plant.name} className='product-image' />
 										<div className='product-title'>{plant.name}</div>
-										<button className='product-button' onClick={() => handleAddToCart(plant)}>
+										<button className='product-button' disabled={addedToCart[plant.name]} onClick={(e) => handleAddToCart(e, plant)}>
 											Add to cart
 										</button>
 									</div>
@@ -315,7 +317,7 @@ function ProductList() {
 					))}
 				</div>
 			) : (
-				<CartItem onContinueShopping={handleContinueShopping} />
+				<CartItem onContinueShopping={handleContinueShopping} setCartQty={setCartQty} setAddedToCart={setAddedToCart} />
 			)}
 		</div>
 	);

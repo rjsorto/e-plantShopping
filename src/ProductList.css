@@ -78,14 +78,13 @@ body {
 	border-radius: 5px;
 	text-align: center;
 	position: relative;
-
+	transition: transform 0.3s ease-in-out;
 	gap: 20px;
 }
 
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
 	transform: scale(1.05);
-	transition: transform 0.3s ease-in-out;
 	z-index: 1;
 }
 
@@ -172,13 +171,18 @@ body {
 }
 .cart {
 	color: white;
-	display: flex;
+	display: grid;
+	grid-template-areas: 'cart';
+	place-items: center;
+}
+.cart > * {
+	grid-area: cart;
 }
 .cart_quantity_count {
-	margin-top: 16px;
+	/*margin-top: 16px;*/
 	/* background-color: red; */
-	margin-left: 27px;
-	position: absolute;
+	/*margin-left: 27px;*/
+	/*position: absolute;*/
 	font-size: 29px;
 }
 .plantname_heading {
@@ -220,6 +224,12 @@ body {
 
 .product-button:hover {
 	background-color: #45a049;
+}
+
+.product-button[disabled] {
+	background-color: lightgray !important;
+	color: gray;
+	cursor: not-allowed;
 }
 
 .product-button.added-to-cart {
