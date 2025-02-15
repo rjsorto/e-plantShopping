@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProductList() {
 	const [showCart, setShowCart] = useState(false);
 	const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+
+	const [addedToCart, setAddedToCart] = useState([]);
+	const cartItems = useSelector((state) => state.cart);
 
 	const plantsArray = [
 		{
@@ -233,13 +236,9 @@ function ProductList() {
 		setShowCart(false);
 	};
 
-	const [addedToCart, setAddedToCart] = useState([]);
-	const [cartQty, setCartQty] = useState(0);
-
-	const handleAddToCart = (e, plant) => {
+	const handleAddToCart = (plant) => {
 		dispatch(addItem(plant));
 		setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true }));
-		setCartQty(cartQty + 1);
 	};
 
 	return (
@@ -263,7 +262,7 @@ function ProductList() {
 						{' '}
 						<a href='#' onClick={(e) => handleCartClick(e)}>
 							<h2 className='cart'>
-								<div className='cart_quantity_count'>{cartQty}</div>
+								<div className='cart_quantity_count'>{cartItems.qty}</div>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' id='IconChangeColor' height='68' width='68'>
 									<rect width='156' height='156' fill='none'></rect>
 									<circle cx='80' cy='216' r='12'></circle>
@@ -285,9 +284,15 @@ function ProductList() {
 									<div className='product-card' key={i}>
 										<img src={plant.image} alt={plant.name} className='product-image' />
 										<div className='product-title'>{plant.name}</div>
-										<button className='product-button' disabled={addedToCart[plant.name]} onClick={(e) => handleAddToCart(e, plant)}>
-											{addedToCart[plant.name] ? 'Added to cart' : 'Add to cart'}
-										</button>
+										{cartItems.items.some((item) => item.name === plant.name) ? (
+											<button className='product-button' disabled>
+												Added to cart
+											</button>
+										) : (
+											<button className='product-button' onClick={() => handleAddToCart(plant)}>
+												Add to cart
+											</button>
+										)}
 									</div>
 								))}
 							</div>
@@ -295,7 +300,7 @@ function ProductList() {
 					))}
 				</div>
 			) : (
-				<CartItem onContinueShopping={handleContinueShopping} setCartQty={setCartQty} setAddedToCart={setAddedToCart} />
+				<CartItem onContinueShopping={handleContinueShopping} />
 			)}
 		</div>
 	);
