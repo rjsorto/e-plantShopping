@@ -245,7 +245,7 @@ function ProductList() {
 	return (
 		<div>
 			<div className='navbar'>
-				<a href='/' className='luxury'>
+				<a href='/e-plantShopping' className='luxury'>
 					<img src='https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png' alt='' />
 					<div>
 						<h3>Paradise Nursery</h3>
