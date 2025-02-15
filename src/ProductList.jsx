@@ -215,28 +215,6 @@ function ProductList() {
 			],
 		},
 	];
-	const styleObj = {
-		// navbar
-		// backgroundColor: '#4CAF50',
-		// color: '#fff!important',
-		// padding: '15px',
-		// display: 'flex',
-		// justifyContent: 'space-between',
-		// alignIems: 'center',
-		// fontSize: '20px',
-		// gap: '2vw',
-	};
-	const styleObjUl = {
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		width: '1100px',
-	};
-	const styleA = {
-		color: 'white',
-		fontSize: '30px',
-		textDecoration: 'none',
-	};
 
 	const dispatch = useDispatch();
 
@@ -266,24 +244,24 @@ function ProductList() {
 
 	return (
 		<div>
-			<div className='navbar' style={styleObj}>
+			<div className='navbar'>
 				<a href='/' className='luxury'>
 					<img src='https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png' alt='' />
 					<div>
-						<h3 style={{ color: 'white' }}>Paradise Nursery</h3>
-						<i style={{ color: 'white' }}>Where Green Meets Serenity</i>
+						<h3>Paradise Nursery</h3>
+						<i>Where Green Meets Serenity</i>
 					</div>
 				</a>
-				<div style={styleObjUl}>
+				<div className='navbar-links'>
 					<div>
 						{' '}
-						<a href='#' onClick={(e) => handlePlantsClick(e)} style={styleA}>
+						<a href='#' onClick={(e) => handlePlantsClick(e)}>
 							Plants
 						</a>
 					</div>
 					<div>
 						{' '}
-						<a href='#' onClick={(e) => handleCartClick(e)} style={styleA}>
+						<a href='#' onClick={(e) => handleCartClick(e)}>
 							<h2 className='cart'>
 								<div className='cart_quantity_count'>{cartQty}</div>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' id='IconChangeColor' height='68' width='68'>

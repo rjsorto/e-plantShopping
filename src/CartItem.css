@@ -13,7 +13,6 @@
 	width: 200px;
 	height: 200px;
 	/* object-fit: contain; */
-	margin-right: 20px;
 }
 
 .cart-item-details {
@@ -103,17 +102,15 @@
 .cart-item {
 	display: flex;
 	border-bottom: 1px solid #ccc;
-	padding: 10px 0;
+	padding: 10px;
 	background-color: white;
 	width: 500px;
-	gap: 30px;
 }
 
 .cart-item-image {
 	width: 200px;
 	height: 200px;
-	/* object-fit: contain; */
-	margin-right: 20px;
+	object-fit: cover;
 }
 
 .cart-item-details {
@@ -187,7 +184,7 @@
 
 	.cart-item-image {
 		width: 100%; /* Set image width to full width */
-		height: auto; /* Allow image height to adjust proportionally */
+		height: 260px; /* Allow image height to adjust proportionally */
 		margin-right: 0; /* Remove margin */
 		margin-bottom: 10px; /* Add margin bottom for spacing */
 	}
